@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "pug");
 app.set("views", "./views");
 
-const users = JSON.parse(fs.readFileSync("users.json", "utf8"));
+const users = JSON.parse(fs.readFileSync("./db/users.json", "utf8"));
 
 app.get("/", (req, res) => {
   res.render("welcome");
