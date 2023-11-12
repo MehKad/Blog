@@ -29,8 +29,7 @@ label {
   margin-top: 10px;
 }
 
-input[type="text"],
-input[type="password"] {
+input {
   width: calc(100% - 22px);
   padding: 10px;
   margin: 6px 0;
@@ -38,7 +37,7 @@ input[type="password"] {
   border-radius: 3px;
 }
 
-button[type="submit"] {
+button {
   background-color: #007bff;
   border: none;
   border-radius: 5px;
@@ -48,7 +47,7 @@ button[type="submit"] {
   width: 100%;
 }
 
-button[type="submit"]:hover {
+button:hover {
   background-color: #0056b3;
 }
 

@@ -5,7 +5,10 @@ const app = express();
 const bodyParser = require("body-parser");
 
 function generateUniqueArticleId() {
-  return Date.now().toString();
+  const existingIds = articles.map((i) => i.id);
+  const largestId = existingIds.length > 0 ? Math.max(...existingIds) : 0;
+  const newId = largestId + 1;
+  return newId;
 }
 
 app.use(

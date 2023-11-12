@@ -18,7 +18,6 @@ html(lang="en")
    ul   
       each i in articles
          li 
-            h2 #{i.id} 
             p #{i.data}
             p User: #{users.find(user => user.username === i.username).username}
             if users.find(user => user.username === i.username).username === username 
