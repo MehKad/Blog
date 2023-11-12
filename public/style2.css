@@ -25,3 +25,30 @@ a:hover {
 a:last-child {
   margin-right: 0;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+li:hover {
+  transform: scale(1.05);
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+p {
+  margin: 10px 0;
+}

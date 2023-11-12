@@ -6,7 +6,7 @@ html(lang="en")
       link(rel='stylesheet', href='/public/style2.css')
       title welcome
    body 
-   h1 welcome 
+   h1 welcome To the Blog page
 
    if username 
       h1 Good afternoon #{username}
@@ -14,4 +14,10 @@ html(lang="en")
    else 
       a(href="/login") LOGIN
       a(href="/register") REGISTER
+   ul   
+      each i in articles
+         li 
+            h2 #{i.id} 
+            p #{i.data}
+            p User: #{users.find(user => user.username === i.username).username}
    

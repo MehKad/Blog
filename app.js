@@ -18,9 +18,10 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 
 const users = JSON.parse(fs.readFileSync("./db/users.json", "utf8"));
+const articles = JSON.parse(fs.readFileSync("./db/articles.json", "utf8"));
 
 app.get("/", (req, res) => {
-  res.render("welcome");
+  res.render("welcome", { articles, users });
 });
 
 app.get("/public/:cssFile", (req, res) => {
@@ -48,7 +49,7 @@ app.post("/login", (req, res) => {
 
   if (user) {
     req.session.username = Cuser;
-    res.render("welcome", { username: req.session.username });
+    res.render("welcome", { articles, users, username: req.session.username });
   } else {
     res.render("login", { err: "Invalid username or password" });
   }
@@ -79,7 +80,7 @@ app.post("/register", (req, res) => {
 
 app.get("/logout", (req, res) => {
   req.session.destroy();
-  res.render("welcome");
+  res.render("welcome", { articles, users });
 });
 
 app.listen(3000, () => {
