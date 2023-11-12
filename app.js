@@ -109,6 +109,25 @@ app.post("/update/:id", (req, res) => {
   res.redirect("/");
 });
 
+app.post("/delete/:id", (req, res) => {
+  const articleId = parseInt(req.params.id);
+  const articleIndex = articles.findIndex((i) => i.id === articleId);
+
+  if (
+    articleIndex !== -1 &&
+    articles[articleIndex].username === req.session.username
+  ) {
+    articles.splice(articleIndex, 1);
+    fs.writeFileSync(
+      "./db/articles.json",
+      JSON.stringify(articles, null, 2),
+      "utf8"
+    );
+  }
+
+  res.redirect("/");
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

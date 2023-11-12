@@ -11,6 +11,7 @@ html(lang="en")
    if username 
       h1 Good afternoon #{username}
       a(href="/logout") logout  
+      a(href=`#`) Add article
    else 
       a(href="/login") login
       a(href="/register") register
@@ -22,4 +23,19 @@ html(lang="en")
             p User: #{users.find(user => user.username === i.username).username}
             if users.find(user => user.username === i.username).username === username 
                a(href=`/edit/${i.id}`) edit
+               button(onclick=`deleteArticle(${i.id})`) delete
+
+   script.
+      function deleteArticle(articleId) {
+         if (confirm("Are you sure you want to delete this article?")) {
+            fetch(`/delete/${articleId}`, { method: "POST" })
+         .then(() => {
+            location.reload();
+         })
+         .catch((error) => {
+            console.error("Error deleting article: " + error);
+         });
+      }}
+
+
    

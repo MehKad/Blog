@@ -52,3 +52,16 @@ h2 {
 p {
   margin: 10px 0;
 }
+
+button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
