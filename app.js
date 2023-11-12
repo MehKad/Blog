@@ -23,14 +23,11 @@ app.get("/", (req, res) => {
   res.render("welcome");
 });
 
-app.get("/public/style1.css", (req, res) => {
-  res.sendFile(__dirname + "/public/style1.css");
-});
-app.get("/public/style2.css", (req, res) => {
-  res.sendFile(__dirname + "/public/style2.css");
-});
-app.get("/public/style3.css", (req, res) => {
-  res.sendFile(__dirname + "/public/style3.css");
+app.get("/public/:cssFile", (req, res) => {
+  const cssFile = req.params.cssFile;
+  const filePath = `${__dirname}/public/${cssFile}`;
+
+  res.sendFile(filePath);
 });
 
 app.get("/login", (req, res) => {
