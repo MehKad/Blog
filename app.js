@@ -21,7 +21,7 @@ const users = JSON.parse(fs.readFileSync("./db/users.json", "utf8"));
 const articles = JSON.parse(fs.readFileSync("./db/articles.json", "utf8"));
 
 app.get("/", (req, res) => {
-  res.render("welcome", { articles, users });
+  res.render("welcome", { articles, users, username: req.session.username });
 });
 
 app.get("/public/:cssFile", (req, res) => {
@@ -81,6 +81,32 @@ app.post("/register", (req, res) => {
 app.get("/logout", (req, res) => {
   req.session.destroy();
   res.render("welcome", { articles, users });
+});
+
+app.get("/edit/:id", (req, res) => {
+  const articleId = parseInt(req.params.id);
+  const article = articles.find((i) => i.id === articleId);
+
+  if (article && article.username === req.session.username) {
+    res.render("edit", { article });
+  }
+});
+
+app.post("/update/:id", (req, res) => {
+  const articleId = parseInt(req.params.id);
+  const article = articles.find((i) => i.id === articleId);
+
+  if (article && article.username === req.session.username) {
+    article.data = req.body.data;
+
+    fs.writeFileSync(
+      "./db/articles.json",
+      JSON.stringify(articles, null, 2),
+      "utf8"
+    );
+  }
+
+  res.redirect("/");
 });
 
 app.listen(3000, () => {

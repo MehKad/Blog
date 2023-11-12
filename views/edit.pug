@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+   head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      link(rel='stylesheet', href='/public/style4.css')
+      title edit article
+   body 
+   h1 Editing article #{article.id}
+   form(action=`/update/${article.id}` method="POST")
+      label(for="data") article data:
+      input(type="text", name="data", value=article.data)
+      input(type="hidden" name="articleId" value=article.id)
+      br
+      button(type="submit") Save
+      a(href="/") Cancel
