@@ -31,6 +31,10 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
 app.post("/login", (req, res) => {
   const Cuser = req.body.username;
   const Cpassword = req.body.password;
@@ -45,6 +49,29 @@ app.post("/login", (req, res) => {
   } else {
     res.render("login", { err: "Invalid username or password" });
   }
+});
+
+app.post("/register", (req, res) => {
+  const Cuser = req.body.username;
+  const Cpassword = req.body.password;
+  const CRepassword = req.body.repassword;
+
+  if (Cpassword !== CRepassword) {
+    return res.render("register", { err: "passwords dont match" });
+  }
+
+  const exists = users.find((i) => i.username === Cuser);
+  if (exists) {
+    return res.render("register", { err: "Username already exists" });
+  }
+
+  const newUser = {
+    username: Cuser,
+    password: Cpassword,
+  };
+  users.push(newUser);
+  fs.writeFileSync("./db/users.json", JSON.stringify(users, null, 2), "utf8");
+  res.redirect("/login");
 });
 
 app.get("/logout", (req, res) => {

@@ -4,17 +4,18 @@ html(lang="en")
       meta(charset="UTF-8")
       meta(name="viewport", content="width=device-width, initial-scale=1.0")
       link(rel='stylesheet', href='/public/style.css')
-      title login page
+      title register page
    body 
-   h1 Login 
-   form(action="/login", method="post")
+   h1 register 
+   form(action="/register", method="post")
       label(for="username") username 
       input(type="text" name="username" id="username")
       label(for="password") Password
       input(type="password" name="password" id="password")
+      label(for="password") Re-Password
+      input(type="password" name="repassword" id="repassword")
       button(type="submit") submit
-   p New here? create an account 
-      a(href="/register") REGISTER
-      
+   p Already a user? 
+      a(href="/login") login
    if err
       p #{err}
