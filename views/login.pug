@@ -3,7 +3,7 @@ html(lang="en")
    head
       meta(charset="UTF-8")
       meta(name="viewport", content="width=device-width, initial-scale=1.0")
-      link(rel='stylesheet', href='/public/style.css')
+      link(rel='stylesheet', href='/public/style1.css')
       title login page
    body 
    h1 Login 
@@ -13,8 +13,8 @@ html(lang="en")
       label(for="password") Password
       input(type="password" name="password" id="password")
       button(type="submit") submit
-   p New here? create an account 
-      a(href="/register") REGISTER
-      
+   p New here? 
+      a(href="/register") create an account 
+
    if err
-      p #{err}
+      p#error #{err}

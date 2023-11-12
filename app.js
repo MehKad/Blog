@@ -23,8 +23,14 @@ app.get("/", (req, res) => {
   res.render("welcome");
 });
 
-app.get("/public/style.css", (req, res) => {
-  res.sendFile(__dirname + "/public/style.css");
+app.get("/public/style1.css", (req, res) => {
+  res.sendFile(__dirname + "/public/style1.css");
+});
+app.get("/public/style2.css", (req, res) => {
+  res.sendFile(__dirname + "/public/style2.css");
+});
+app.get("/public/style3.css", (req, res) => {
+  res.sendFile(__dirname + "/public/style3.css");
 });
 
 app.get("/login", (req, res) => {

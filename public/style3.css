@@ -52,21 +52,24 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-p {
+#error {
   color: red;
   font-size: 14px;
   margin-top: 10px;
 }
 
-#welcome {
-  margin: 20px;
+p {
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 a {
+  font-size: 14px;
+  margin-top: 10px;
   text-decoration: none;
   color: #007bff;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #0054af;
 }
