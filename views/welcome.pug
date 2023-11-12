@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+   head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      link(rel='stylesheet', href='/public/style.css')
+      title welcome
+   body 
+   h1 welcome 
+
+   if username 
+      h1 Good afternoon #{username}
+      a(href="/logout") LOGOUT 
+   else 
+      a(href="/login") LOGIN
+   
