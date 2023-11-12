@@ -8,5 +8,10 @@
     "id": 3,
     "data": "Article 3 is about something else.",
     "username": "mehdi"
+  },
+  {
+    "id": "4",
+    "data": "mariam's first article",
+    "username": "mariam"
   }
 ]

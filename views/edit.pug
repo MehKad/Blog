@@ -10,7 +10,6 @@ html(lang="en")
    form(action=`/update/${article.id}` method="POST")
       label(for="data") article data:
       input(type="text", name="data", value=article.data)
-      input(type="hidden" name="articleId" value=article.id)
       br
       button(type="submit") Save
       a(href="/") Cancel

@@ -4,6 +4,10 @@ const fs = require("fs");
 const app = express();
 const bodyParser = require("body-parser");
 
+function generateUniqueArticleId() {
+  return Date.now().toString();
+}
+
 app.use(
   session({
     secret: "secret",
@@ -124,6 +128,36 @@ app.post("/delete/:id", (req, res) => {
       "utf8"
     );
   }
+
+  res.redirect("/");
+});
+
+app.get("/addArticle", (req, res) => {
+  res.render("addArticle", { username: req.session.username });
+});
+
+app.post("/addArticle", (req, res) => {
+  if (!req.session.username) {
+    return res.redirect("/login");
+  }
+
+  const articleData = req.body.data;
+  if (!articleData) {
+    return res.render("addArticle", { error: "Please provide article data" });
+  }
+
+  const newArticle = {
+    id: generateUniqueArticleId(),
+    data: articleData,
+    username: req.session.username,
+  };
+
+  articles.push(newArticle);
+  fs.writeFileSync(
+    "./db/articles.json",
+    JSON.stringify(articles, null, 2),
+    "utf8"
+  );
 
   res.redirect("/");
 });
