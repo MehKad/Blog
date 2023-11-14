@@ -3,6 +3,7 @@ const session = require("express-session");
 const fs = require("fs");
 const app = express();
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 function generateUniqueArticleId() {
   const existingIds = articles.map((i) => i.id);
@@ -10,6 +11,8 @@ function generateUniqueArticleId() {
   const newId = largestId + 1;
   return newId;
 }
+
+app.use(cookieParser());
 
 app.use(
   session({
@@ -56,6 +59,7 @@ app.post("/login", (req, res) => {
 
   if (user) {
     req.session.username = Cuser;
+    res.cookie("username", Cuser);
     res.render("welcome", { articles, users, username: req.session.username });
   } else {
     res.render("login", { err: "Invalid username or password" });
@@ -87,6 +91,7 @@ app.post("/register", (req, res) => {
 
 app.get("/logout", (req, res) => {
   req.session.destroy();
+  res.clearCookie("username");
   res.render("welcome", { articles, users });
 });
 
