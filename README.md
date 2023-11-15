@@ -31,5 +31,5 @@ $  npm i
 To run this project, type this commande
 
 ```bash
-$  nodemon app.js
+$  npm start
 ```
